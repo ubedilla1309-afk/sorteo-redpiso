@@ -91,8 +91,21 @@ input:focus{border-color: rgba(255,42,42,.55); box-shadow: 0 0 0 4px rgba(212,0,
 .legal{color:var(--muted); font-size:12px; margin:4px 0 0; line-height:1.4;}
 
 .foot{max-width:980px; margin:0 auto; padding:0 18px 22px;}
+
+/* Botón Instagram (evita morado/visited y asegura legibilidad) */
 .ig-btn{
   display:flex;
   align-items:center;
   gap:8px;
+  color:#fff;
+  text-decoration:none;
+}
+.ig-btn:visited,
+.ig-btn:hover,
+.ig-btn:active{
+  color:#fff;
+  text-decoration:none;
+}
+.ig-btn svg{
+  flex-shrink:0;
 }
