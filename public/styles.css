@@ -100,3 +100,8 @@ input:focus{border-color: rgba(255,42,42,.55); box-shadow: 0 0 0 4px rgba(212,0,
 }
 
 .foot{max-width:980px; margin:0 auto; padding:0 18px 22px;}
+.ig-btn{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
