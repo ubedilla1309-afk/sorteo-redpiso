@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>¡Listo!</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main class="wrap">
+    <section class="card success">
+      <h1>✅ Solicitud recibida</h1>
+      <p>
+        Perfecto. Te contactaremos para la valoración <strong>sin compromiso</strong>.
+        <br/>Tu participación se asignará cuando vayamos a valorar la vivienda.
+      </p>
+
+      <div class="stats">
+        <div class="pill"><strong><%= stats.total %></strong> / 50</div>
+        <div class="pill ghost">Quedan <strong><%= stats.remaining %></strong></div>
+      </div>
+
+      <a class="btn primary" href="/">Volver</a>
+    </section>
+  </main>
+</body>
+</html>

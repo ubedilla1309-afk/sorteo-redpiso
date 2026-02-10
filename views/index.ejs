@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title><%= PROMO_TITLE %></title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <img class="logo" src="/logo-redpiso.svg" alt="RedPiso"/>
+      <div class="brandText">
+        <div class="kicker">RedPiso</div>
+        <h1><%= PROMO_TITLE %></h1>
+        <p class="sub"><%= PROMO_SUBTITLE %></p>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="pill"><strong><%= stats.total %></strong> / 50 plazas</div>
+      <div class="pill ghost">Quedan <strong><%= stats.remaining %></strong></div>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <% if (stats.winner) { %>
+      <section class="card success">
+        <h2>🎉 ¡Ya hay ganador!</h2>
+        <p>
+          <strong><%= stats.winner.first_name %> <%= stats.winner.last_name %></strong>
+          <span class="muted">(sorteado: <%= stats.drawn_at %>)</span>
+        </p>
+        <p class="muted">Gracias por participar. Muy pronto más sorteos.</p>
+      </section>
+    <% } %>
+
+    <% if (q && q.err) { %>
+      <section class="card warn"><%= q.err %></section>
+    <% } %>
+
+    <% if ((q && q.full) && !stats.winner) { %>
+      <section class="card warn">
+        <h2>¡Cupos completos! 🔥</h2>
+        <p>Ya tenemos 50 solicitudes. En breve publicaremos el ganador.</p>
+      </section>
+    <% } %>
+
+    <% if (!stats.isFull && !stats.winner) { %>
+      <section class="card">
+        <h2>Valoración gratis + participación</h2>
+        <p class="muted">
+          Déjanos tus datos y tu dirección. Te contactamos para una valoración <strong>sin compromiso</strong>.
+          <br/>La participación del sorteo se asigna cuando vayamos a valorar tu vivienda.
+        </p>
+
+        <form method="POST" action="/participar" class="form">
+          <div class="grid">
+            <label>
+              Nombre
+              <input name="first_name" required minlength="2" placeholder="Nombre" />
+            </label>
+            <label>
+              Apellidos
+              <input name="last_name" required minlength="2" placeholder="Apellidos" />
+            </label>
+          </div>
+
+          <label>
+            Teléfono
+            <input name="phone" required placeholder="Teléfono" inputmode="tel" />
+          </label>
+
+          <label>
+            Dirección de la vivienda
+            <input name="address" required minlength="8" placeholder="Calle, número, ciudad (si quieres, piso/puerta)" />
+            <span class="hint">Tranquilo: es solo para poder hacerte la valoración. Sin compromiso.</span>
+          </label>
+
+          <div class="check">
+            <label class="checkRow">
+              <input type="checkbox" name="followed_socials" required />
+              <span>Confirmo que sigo a RedPiso en Instagram o TikTok (requisito)</span>
+            </label>
+
+            <div class="socials">
+              <a class="btn small" href="<%= IG_URL %>" target="_blank" rel="noopener">Instagram</a>
+              <a class="btn small" href="<%= TT_URL %>" target="_blank" rel="noopener">TikTok</a>
+            </div>
+
+            <span class="hint">
+              Verificación: el ganador deberá demostrar que nos sigue para recibir el premio ✅
+            </span>
+          </div>
+
+          <button class="btn primary" type="submit">Solicitar valoración</button>
+
+          <p class="legal">
+            Al enviar aceptas el tratamiento de tus datos solo para gestionar la solicitud de valoración y el sorteo.
+            Participación asignada al realizar la visita de valoración. (Añade tus bases legales/RGPD).
+          </p>
+        </form>
+      </section>
+    <% } %>
+
+    <section class="card qr">
+      <div>
+        <h3>Escanea el QR</h3>
+        <p class="muted">Ideal para carteles, escaparate o tarjetas.</p>
+        <p class="muted small">URL: <%= PUBLIC_URL %></p>
+      </div>
+      <img class="qrImg" src="/qr.png" alt="QR Sorteo RedPiso" />
+    </section>
+
+  </main>
+
+  <footer class="foot">
+    <span class="muted">© <%= new Date().getFullYear() %> RedPiso</span>
+  </footer>
+</body>
+</html>
