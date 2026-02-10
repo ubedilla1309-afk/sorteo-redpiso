@@ -90,15 +90,6 @@ input:focus{border-color: rgba(255,42,42,.55); box-shadow: 0 0 0 4px rgba(212,0,
 
 .legal{color:var(--muted); font-size:12px; margin:4px 0 0; line-height:1.4;}
 
-.qr{display:flex; align-items:center; justify-content:space-between; gap:16px;}
-.qrImg{
-  width:140px; height:140px;
-  border-radius:16px;
-  background:#fff;
-  padding:10px;
-  border:1px solid var(--border);
-}
-
 .foot{max-width:980px; margin:0 auto; padding:0 18px 22px;}
 .ig-btn{
   display:flex;
