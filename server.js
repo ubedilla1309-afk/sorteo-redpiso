@@ -177,3 +177,16 @@ app.listen(PORT, async () => {
   console.log(`✅ Web lista en: ${PUBLIC_URL}`);
   console.log(`✅ QR disponible en: ${PUBLIC_URL}/qr.png`);
 });
+
+// BORRAR PARTICIPANTE
+app.get("/admin/delete", (req, res) => {
+  if (String(req.query.token || "") !== ADMIN_TOKEN) {
+    return res.status(401).send("No autorizado.");
+  }
+
+  const id = Number(req.query.id);
+  if (!id) return res.send("Falta el ID");
+
+  db.prepare("DELETE FROM entries WHERE id=?").run(id);
+  res.send(`Participante ${id} eliminado ✅`);
+});
